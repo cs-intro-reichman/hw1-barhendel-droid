@@ -1,26 +1,31 @@
- 
 public class TimeFormat {
     public static void main(String[] args) {
-        String fulltime = (args[0]);
-        int hours = Integer.parseInt("" + args[0].charAt(0) + args[0].charAt(1));
-        // Does the same with the minutes part of the input.
-        int minutes = Integer.parseInt("" + args[0].charAt(3) + args[0].charAt(4));
+        if (args.length == 0) return;
 
-        if (hours == 0) {
-            System.out.println("12:" + String.format("%02d", minutes) + " AM");
-        
-     
-        } else if (hours < 12) {
-            System.out.println(fulltime + " AM");
-        
-    
-        } else if (hours == 12) {
-            System.out.println(fulltime + " PM");
-        
-     
-        } else {
-            hours = hours - 12;
-            System.out.println(hours + ":" + String.format("%02d", minutes) + " PM");
+        String fulltime = args[0];
+        if (fulltime.length() != 5 || fulltime.charAt(2) != ':') return;
+
+        int hours;
+        int minutes;
+        try {
+            hours = Integer.parseInt(fulltime.substring(0, 2));
+            minutes = Integer.parseInt(fulltime.substring(3, 5));
+        } catch (NumberFormatException e) {
+            return;
         }
+
+        if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) return;
+
+        int displayHour;
+        String period;
+        if (hours < 12) {
+            displayHour = hours; 
+            period = "AM";
+        } else {
+            displayHour = (hours == 12) ? 12 : hours - 12;
+            period = "PM";
+        }
+
+        System.out.println(displayHour + ":" + String.format("%02d", minutes) + " " + period);
+    }
 }
-```
