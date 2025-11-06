@@ -9,7 +9,7 @@ public class Bill3 {
 	    int totalBill = Integer.parseInt(billString);
 		double portion = totalBill/3.0 ;
 		double payAmount = Math.ceil(portion); 
-		System.out.println( "dear " + name3 + name2 + "and" + name1 + ": pay " + payAmount +  "shekels each." );
+		System.out.println( "Dear " + name3 + name2 +" " + "and" + " " + name1 + ": pay " + payAmount +  "Shekels each." );
 		 
 		
 	    // Replace this comment with the rest of your code   
